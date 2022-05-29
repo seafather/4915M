@@ -43,6 +43,7 @@ namespace ITP4915M.StoreUI
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnInventoryQty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnQty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listViewIItem
@@ -50,10 +51,12 @@ namespace ITP4915M.StoreUI
             this.listViewIItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnNum,
             this.columnName,
+            this.columnPrice,
             this.columnInventoryQty,
             this.columnQty});
+            this.listViewIItem.FullRowSelect = true;
             this.listViewIItem.HideSelection = false;
-            this.listViewIItem.Location = new System.Drawing.Point(11, 33);
+            this.listViewIItem.Location = new System.Drawing.Point(12, 33);
             this.listViewIItem.Name = "listViewIItem";
             this.listViewIItem.Size = new System.Drawing.Size(677, 329);
             this.listViewIItem.TabIndex = 0;
@@ -96,6 +99,7 @@ namespace ITP4915M.StoreUI
             this.btnConfirm.TabIndex = 3;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // lblName
             // 
@@ -165,17 +169,22 @@ namespace ITP4915M.StoreUI
             // columnName
             // 
             this.columnName.Text = "Name";
-            this.columnName.Width = 455;
+            this.columnName.Width = 370;
             // 
             // columnInventoryQty
             // 
             this.columnInventoryQty.Text = "InventoryQty";
-            this.columnInventoryQty.Width = 46;
+            this.columnInventoryQty.Width = 92;
             // 
             // columnQty
             // 
             this.columnQty.Text = "qty";
-            this.columnQty.Width = 86;
+            this.columnQty.Width = 66;
+            // 
+            // columnPrice
+            // 
+            this.columnPrice.Text = "Unit price";
+            this.columnPrice.Width = 59;
             // 
             // itemConfirmUI
             // 
@@ -217,5 +226,6 @@ namespace ITP4915M.StoreUI
         private System.Windows.Forms.ColumnHeader columnQty;
         private System.Windows.Forms.ColumnHeader columnInventoryQty;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.ColumnHeader columnPrice;
     }
 }

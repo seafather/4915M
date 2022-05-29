@@ -27,10 +27,13 @@ namespace ITP4915M
 
         private void Loaditem()
         {
+            
             using (var dbContext = new better_shopEntities())
             {
+                
                 var info = from i in dbContext.items
                            select i;
+                
                 foreach(var item in info)
                 {
                     String[] data = {item.item_id,item.item_name,item.item_price.ToString()};

@@ -25,18 +25,28 @@ namespace ITP4915M.StoreUI
 
         private void LoaditemDatail()
         {
-            using ( var db = new )
+            using ( var db = new better_shopEntities())
             {
+                store.bePurchasedList.ForEach(id => {
 
+                    var info = from i in db.items
+                               where i.item_id == id
+                               select i;
+
+                    foreach (var data in info)
+                    {
+                        item = new ListViewItem();
+                        item.Text = data.item_id;
+                        item.SubItems.Add(data.item_name);
+                        item.SubItems.Add(data.item_price.ToString());
+                        item.SubItems.Add("i dont know");
+                        item.SubItems.Add("tst");
+                        listViewIItem.Items.Add(item);
+
+                    }
+
+                });
             }
-
-
-                item = new ListViewItem();
-            item.Text = "number";
-            item.SubItems.Add("name");
-            item.SubItems.Add("Qty");
-            item.SubItems.Add("Invetory Qty");
-            listViewIItem.Items.Add(item);
 
             
         }
@@ -48,6 +58,17 @@ namespace ITP4915M.StoreUI
         private void closeProgram()
         {
             this.Close();
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            submitOrder();
+        }
+
+        //to submit and create order
+        private void submitOrder()
+        {
+            
         }
     }
 }
