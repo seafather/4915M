@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="better_shopModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="255" />
+          <Property Name="item_price" Type="int" Nullable="false" />
+          <Property Name="item Dimension" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="item_Weight" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="item_describe" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="item_discount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="staff_id" Type="varchar" MaxLength="50" />
+          <Property Name="order_amount" Type="int" />
+          <Property Name="order_created_date" Type="date" />
+        </EntityType>
+        <EntityType Name="orderdetails">
+          <Key>
+            <PropertyRef Name="item_id" />
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="item_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="order_id" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="item_qty" Type="int" />
+          <Property Name="item_weight" Type="int" />
+        </EntityType>
+        <Association Name="item_id">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="orderdetails">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_id">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="orderdetails" Type="Self.orderdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="orderdetails">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="better_shopModelStoreContainer">
+          <EntitySet Name="item" EntityType="Self.item" Schema="better_shop" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="better_shop" store:Type="Tables" />
+          <EntitySet Name="orderdetails" EntityType="Self.orderdetails" Schema="better_shop" store:Type="Tables" />
+          <AssociationSet Name="item_id" Association="Self.item_id">
+            <End Role="item" EntitySet="item" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
+          </AssociationSet>
+          <AssociationSet Name="order_id" Association="Self.order_id">
+            <End Role="order" EntitySet="order" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="better_shopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="item_price" Type="Int32" Nullable="false" />
+          <Property Name="item_Dimension" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_Weight" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_describe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_discount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orderdetails" Relationship="Self.item_id" FromRole="item" ToRole="orderdetails" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="staff_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="order_amount" Type="Int32" />
+          <Property Name="order_created_date" Type="DateTime" />
+          <NavigationProperty Name="orderdetails" Relationship="Self.order_id" FromRole="order" ToRole="orderdetails" />
+        </EntityType>
+        <EntityType Name="orderdetail">
+          <Key>
+            <PropertyRef Name="item_id" />
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="item_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="order_id" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="item_qty" Type="Int32" />
+          <Property Name="item_weight" Type="Int32" />
+          <NavigationProperty Name="item" Relationship="Self.item_id" FromRole="orderdetails" ToRole="item" />
+          <NavigationProperty Name="order" Relationship="Self.order_id" FromRole="orderdetails" ToRole="order" />
+        </EntityType>
+        <Association Name="item_id">
+          <End Role="item" Type="Self.item" Multiplicity="1" />
+          <End Role="orderdetails" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="item_id" />
+            </Principal>
+            <Dependent Role="orderdetails">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_id">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="orderdetails" Type="Self.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="orderdetails">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="better_shopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="items" EntityType="Self.item" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="orderdetails" EntityType="Self.orderdetail" />
+          <AssociationSet Name="item_id" Association="Self.item_id">
+            <End Role="item" EntitySet="items" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
+          </AssociationSet>
+          <AssociationSet Name="order_id" Association="Self.order_id">
+            <End Role="order" EntitySet="orders" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="better_shopModelStoreContainer" CdmEntityContainer="better_shopEntities">
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="better_shopModel.item">
+              <MappingFragment StoreEntitySet="item">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_price" ColumnName="item_price" />
+                <ScalarProperty Name="item_Dimension" ColumnName="item Dimension" />
+                <ScalarProperty Name="item_Weight" ColumnName="item_Weight" />
+                <ScalarProperty Name="item_describe" ColumnName="item_describe" />
+                <ScalarProperty Name="item_discount" ColumnName="item_discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="better_shopModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_created_date" ColumnName="order_created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderdetails">
+            <EntityTypeMapping TypeName="better_shopModel.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetails">
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="item_qty" ColumnName="item_qty" />
+                <ScalarProperty Name="item_weight" ColumnName="item_weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
