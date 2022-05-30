@@ -32,7 +32,7 @@ namespace ITP4915M
             {
                 
                 var info = from i in dbContext.items
-                           select i;
+                           select i; 
                 
                 foreach(var item in info)
                 {

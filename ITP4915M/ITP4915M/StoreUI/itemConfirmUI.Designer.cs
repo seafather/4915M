@@ -29,7 +29,6 @@ namespace ITP4915M.StoreUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.listViewIItem = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
@@ -39,29 +38,9 @@ namespace ITP4915M.StoreUI
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.columnNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnInventoryQty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnQty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridViewUI = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUI)).BeginInit();
             this.SuspendLayout();
-            // 
-            // listViewIItem
-            // 
-            this.listViewIItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnNum,
-            this.columnName,
-            this.columnPrice,
-            this.columnInventoryQty,
-            this.columnQty});
-            this.listViewIItem.FullRowSelect = true;
-            this.listViewIItem.HideSelection = false;
-            this.listViewIItem.Location = new System.Drawing.Point(12, 33);
-            this.listViewIItem.Name = "listViewIItem";
-            this.listViewIItem.Size = new System.Drawing.Size(677, 329);
-            this.listViewIItem.TabIndex = 0;
-            this.listViewIItem.UseCompatibleStateImageBehavior = false;
-            this.listViewIItem.View = System.Windows.Forms.View.Details;
             // 
             // label1
             // 
@@ -85,7 +64,7 @@ namespace ITP4915M.StoreUI
             this.btnClose.Size = new System.Drawing.Size(26, 23);
             this.btnClose.TabIndex = 2;
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
             // btnConfirm
             // 
@@ -99,7 +78,6 @@ namespace ITP4915M.StoreUI
             this.btnConfirm.TabIndex = 3;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = false;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // lblName
             // 
@@ -126,7 +104,7 @@ namespace ITP4915M.StoreUI
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhone.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(278, 381);
+            this.txtPhone.Location = new System.Drawing.Point(281, 381);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 17);
             this.txtPhone.TabIndex = 7;
@@ -161,30 +139,15 @@ namespace ITP4915M.StoreUI
             this.label4.TabIndex = 8;
             this.label4.Text = "delivery address";
             // 
-            // columnNum
+            // dataGridViewUI
             // 
-            this.columnNum.Text = "Item number";
-            this.columnNum.Width = 90;
-            // 
-            // columnName
-            // 
-            this.columnName.Text = "Name";
-            this.columnName.Width = 370;
-            // 
-            // columnInventoryQty
-            // 
-            this.columnInventoryQty.Text = "InventoryQty";
-            this.columnInventoryQty.Width = 92;
-            // 
-            // columnQty
-            // 
-            this.columnQty.Text = "qty";
-            this.columnQty.Width = 66;
-            // 
-            // columnPrice
-            // 
-            this.columnPrice.Text = "Unit price";
-            this.columnPrice.Width = 59;
+            this.dataGridViewUI.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(253)))), ((int)(((byte)(252)))));
+            this.dataGridViewUI.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUI.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewUI.Location = new System.Drawing.Point(16, 33);
+            this.dataGridViewUI.Name = "dataGridViewUI";
+            this.dataGridViewUI.Size = new System.Drawing.Size(672, 331);
+            this.dataGridViewUI.TabIndex = 10;
             // 
             // itemConfirmUI
             // 
@@ -192,6 +155,7 @@ namespace ITP4915M.StoreUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(253)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(700, 512);
+            this.Controls.Add(this.dataGridViewUI);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPhone);
@@ -201,18 +165,16 @@ namespace ITP4915M.StoreUI
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listViewIItem);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "itemConfirmUI";
             this.Text = "itemConfirmUI";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUI)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listViewIItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnConfirm;
@@ -221,11 +183,7 @@ namespace ITP4915M.StoreUI
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ColumnHeader columnNum;
-        private System.Windows.Forms.ColumnHeader columnName;
-        private System.Windows.Forms.ColumnHeader columnQty;
-        private System.Windows.Forms.ColumnHeader columnInventoryQty;
         private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.ColumnHeader columnPrice;
+        private System.Windows.Forms.DataGridView dataGridViewUI;
     }
 }
